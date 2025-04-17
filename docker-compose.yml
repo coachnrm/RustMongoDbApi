@@ -1,0 +1,13 @@
+version: '3.8'
+
+name: 'rustmongodbapi'
+
+services:
+  db:
+    container_name: 'mongodb-rust-db'
+    image: mongo
+    ports: 
+      - '27020:27017'
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root 
+      - MONGO_INITDB_ROOT_PASSWORD=123456
