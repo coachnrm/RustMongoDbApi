@@ -40,6 +40,8 @@ async fn main() {
     let addr= SocketAddr::from(([0,0,0,0], 3000));
     println!("Server is starting on: {:?}", addr);
 
+    config::database::dbconnect().await;
+
 
     axum::Server::bind(&"0.0.0.0:3000".parse().unwrap())
         .serve(app.into_make_service())
