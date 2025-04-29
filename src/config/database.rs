@@ -3,7 +3,7 @@ use tracing::log::info;
 
 pub async fn dbconnect() -> mongodb::error::Result<Database> {
     // Parse a conneciton string into an options struct.
-    let mut client_options: ClientOptions = ClientOptions::parse("mongodb://root:123456@0.0.0.0:27020").await?;
+    let mut client_options: ClientOptions = ClientOptions::parse("mongodb://root:123456@localhost:27020").await?;
 
     // Manually set an option
     client_options.app_name = Some("My App".to_string());
