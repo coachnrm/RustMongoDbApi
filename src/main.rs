@@ -4,7 +4,7 @@ pub mod item;
 use std::net::SocketAddr;
 
 use axum::{
-    routing::{get, post},
+    routing::{get, post, patch, delete},
     Router,
     http::Method
 };
@@ -35,8 +35,11 @@ async fn main() {
         
         )
         .route("/", get(|| async { "OK" }))
-        .route("/item", post(item::handler::insert_one_item));
-        .route("/:item_id/item", get(item::handler::find_one_item(path)));
+        .route("/item", post(item::handler::insert_one_item))
+        .route("/item", get(item::handler::find_items))
+        .route("/:item_id/item", get(item::handler::find_one_item))
+        .route("/:item_id/item", patch(item::handler::update_item))
+        .route("/:item_id/item", delete(item::handler::delete_item));
 
     // run it with hyper on localhost:3000
     let addr= SocketAddr::from(([0,0,0,0], 3000));
